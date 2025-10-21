@@ -17,9 +17,9 @@ class AnimalTableSeeder extends Seeder
       $a->legs =351.6;
       $a->save();
 
-      $a = DB::table('animals')->where('type', 'lizard')->first();
+      //$a = DB::table('animals')->where('type', 'lizard')->first();
 
-      echo 'Animal: ' . $a;
+      //echo 'Animal: ' . $a;
       Animal::factory()->count(5)->create();
     }
 }
