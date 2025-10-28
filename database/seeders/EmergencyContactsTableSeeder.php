@@ -11,10 +11,10 @@ class EmergencyContactsTableSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
         $e = new EmergencyContact;
-        $e->name = 'Max';
+        $e->type = 'Max';
         $e->animal_id = 1;
         $e->save();
     }
