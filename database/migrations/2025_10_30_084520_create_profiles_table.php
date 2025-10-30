@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use PHPUnit\Framework\Constraint\Constraint;
 
 return new class extends Migration
 {
@@ -11,9 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('emergency_contacts', function (Blueprint $table) {
+        Schema::create('profiles', function (Blueprint $table) {
             $table->id();
+            $table->text('bio')->nullable();
+            $table->string('avatar')->nullable();
             $table->timestamps();
+
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
         });
     }
 
@@ -22,6 +27,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('emergency_contacts');
+        Schema::dropIfExists('profiles');
+
     }
 };
