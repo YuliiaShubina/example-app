@@ -18,7 +18,6 @@ class HabitController extends Controller
         return view('habits.index', compact('habits'));
     }
 
-    // Detail page
     public function show(Habit $habit)
     {
         $habit->load([

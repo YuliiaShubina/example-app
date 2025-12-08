@@ -26,4 +26,9 @@ class Habit extends Model {
     public function likedbyUser() {
         return $this->belongsToMany(Habit::class, 'likes');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
