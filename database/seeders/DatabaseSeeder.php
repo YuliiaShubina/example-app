@@ -18,7 +18,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserTableSeeder::class,
             ProfileTableSeeder::class,
-            HabitTableSeeder::class
+            HabitTableSeeder::class,
+            CommentSeeder:: class,
+            LikeSeeder:: class
         ]);
     }
 }

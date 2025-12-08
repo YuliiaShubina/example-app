@@ -45,22 +45,10 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
+            'id' => 'integer',
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-    /**
-     * Get the user's initials
-     */
-    public function initials(): string
-    {
-        return Str::of($this->name)
-            ->explode(' ')
-            ->take(2)
-            ->map(fn ($word) => Str::substr($word, 0, 1))
-            ->implode('');
-
     }
 
      // One user has many habits
@@ -72,4 +60,16 @@ class User extends Authenticatable
      public function profile(){
         return $this->hasOne(Profile::class);
      }
+
+     public function comment() {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function likes() {
+        return $this->hasMany(Like::class);
+    }
+
+    public function likedHabits() {
+        return $this->belongsToMany(Habit::class, 'likes');
+    }
 }
