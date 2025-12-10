@@ -8,9 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Habit extends Model {
     use HasFactory;
 
-    protected $fillable = ['goal', 'frequency', 'archived'];
+    protected $fillable = ['goal', 'frequency', 'archived', 'user_id', 'image_path'];
 
-    // Each habit belongs to one user
     public function user() {
         return $this->belongsTo(User::class);
     }
@@ -20,11 +19,7 @@ class Habit extends Model {
     }
 
     public function likes() {
-        return $this->hasMany(Like::class);
-    }
-
-    public function likedbyUser() {
-        return $this->belongsToMany(Habit::class, 'likes');
+        return $this->morphMany(Like::class, 'likeable');
     }
 
     public function comments()
