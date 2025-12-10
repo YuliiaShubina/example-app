@@ -21,13 +21,17 @@ class LikeSeeder extends Seeder
         $habits = Habit::all();
 
         foreach ($users as $user) {
+
+            if ($habits->count() === 0) {
+                continue;
+            }
             
-            $randomHabits = $habits->random(min($habits->count(), rand(1, 25)));
+            $randomHabits = $habits->random(
+                min($habits->count(), rand(1, 25)));
 
             foreach ($randomHabits as $habit) {
-                Like::firstOrCreate([
-                    'user_id'  => $user->id,
-                    'habit_id' => $habit->id,
+                $habit->likes()->firstOrCreate([
+                    'user_id' => $user->id,
                 ]);
             }
         }

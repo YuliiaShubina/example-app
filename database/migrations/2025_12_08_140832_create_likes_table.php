@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('likes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('habit_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
 
-            $table->unique(['user_id', 'habit_id']);
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+
+            // Polymorphic relantionships
+            $table->unsignedBigInteger('likeable_id');
+            $table->string('likeable_type');
+            $table->index(['likeable_id', 'likeable_type']);
+
+            $table->timestamps();
         });
     }
 
@@ -26,6 +30,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+
         Schema::dropIfExists('likes');
     }
 };
