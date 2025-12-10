@@ -1,6 +1,13 @@
 <x-app-layout>
     <h1>All Habits</h1>
 
+
+    @auth
+        <p>
+            <a href="{{ route('habits.create') }}">+ Create a new habit</a>
+        </p>
+    @endauth
+
     @if($habits->count() === 0)
         <p>No habits found.</p>
     @else
@@ -10,8 +17,14 @@
                     <a href="{{ route('habits.show', $habit) }}">
                         <strong>{{ $habit->goal }}</strong>
                     </a>
+                    @if ($habit->image_path)
+                        <img src="{{ asset('storage/'.$habit->image_path) }}" alt="Habit image" style="max-width:150px; display:block; margin-bottom:5px;">
+                    @endif
                     <br>
-                    User: {{ $habit->user->name }}
+                    User: <a href="{{ route('users.show', $habit->user) }}">
+                        {{ $habit->user->name }}
+                    </a>
+
                     <br>
                     Frequency: {{ $habit->frequency }}
                     <br>

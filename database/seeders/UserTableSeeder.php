@@ -14,5 +14,10 @@ class UserTableSeeder extends Seeder
     public function run(): void
     {
         User::factory()->count(10)->create();
+
+         $firstUser = User::first();
+        if ($firstUser) {
+            $firstUser->update(['is_admin' => true]);
+        }
     }
 }
