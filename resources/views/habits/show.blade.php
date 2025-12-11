@@ -37,7 +37,6 @@
                         </p>
                     </div>
 
-                    {{-- LIKE BUTTON --}}
                     @auth
                         <form
                             action="{{ route('habits.like', $habit) }}"
@@ -110,7 +109,7 @@
                                         {{ $comment->user->name }}
                                     </a>
                                     <span class="text-xs text-gray-500">
-                                        • {{ $comment->created_at->diffForHumans() }}
+                                        {{ $comment->created_at->diffForHumans() }}
                                     </span>
                                 </div>
 

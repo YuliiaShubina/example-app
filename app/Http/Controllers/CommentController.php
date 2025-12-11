@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Habit;
+use App\Notifications\HabitInteracted;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -20,6 +22,18 @@ class CommentController extends Controller
         $comment->user_id = auth()->id();
         $comment->habit_id = $habit->id;
         $comment->save();
+
+        // notification
+        if ($habit->user_id !== Auth::id()) {
+            $habit->user->notify(
+                new HabitInteracted(
+                    Auth::user(),   
+                    $habit,         
+                    'comment',      
+                    $comment        
+        )
+    );
+}
 
         if ($request->wantsJson()) {
         $comment->load('user');

@@ -22,7 +22,6 @@
                     @csrf
                     @method('PUT')
 
-                    
                     <div>
                         <label for="goal" class="block text-sm font-medium text-gray-700">
                             Goal
@@ -42,7 +41,6 @@
                         @enderror
                     </div>
 
-                   
                     <div>
                         <label for="image" class="block text-sm font-medium text-gray-700">
                             Change image (optional)
@@ -91,7 +89,6 @@
                             <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                         @enderror
                     </div>
-
                     
                     <div class="flex items-center gap-3">
                         <button

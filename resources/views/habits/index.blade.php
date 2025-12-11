@@ -61,7 +61,6 @@
 
                             <div class="flex items-center gap-4 text-sm text-gray-600 mt-3">
                                 <span>{{ $habit->comments_count }} comments</span>
-                                <span>•</span>
                                 <span>{{ $habit->likes_count }} likes</span>
                             </div>
 
